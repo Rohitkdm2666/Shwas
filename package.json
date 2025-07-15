@@ -1,0 +1,27 @@
+{
+  "name": "shwas",
+  "version": "1.0.0",
+  "description": "A multi tenant based (Saas) Hospital Managemant System - Shwas",
+  "homepage": "https://github.com/Rohitkdm2666/Shwas-#readme",
+  "bugs": {
+    "url": "https://github.com/Rohitkdm2666/Shwas-/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rohitkdm2666/Shwas-.git"
+  },
+  "license": "ISC",
+  "author": "Rohit Kadam",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.3",
+    "nodemon": "^3.1.10"
+  }
+}
