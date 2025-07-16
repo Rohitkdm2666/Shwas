@@ -3,8 +3,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const SECRETE = "RohitKadam@666";
 
+// Create a new user
 async function createUser(req, res) {
-    const { first_name,last_name, role, hospitalId } = req.body;
+    const { first_name, last_name, role, hospitalId } = req.body;
     if (!first_name || !role) {
         return res.status(400).json({ error: 'All fields are required' });
     }
@@ -30,6 +31,8 @@ async function createUser(req, res) {
         return res.status(500).json({ error: 'Failed to create user', details: err.message });
     }
 }
+
+// Login user
 async function loginUser(req, res) { 
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -45,6 +48,7 @@ async function loginUser(req, res) {
 
 }
 
+// Get all users
 async function getAllUsers(req, res) {
     try {
         const users = await User.find().populate('hospitalId', 'name');
@@ -54,6 +58,7 @@ async function getAllUsers(req, res) {
     }
 }
 
+// Get user by ID
 async function getUserById(req, res) {
     const userId = req.params.id;
     try {
@@ -67,6 +72,7 @@ async function getUserById(req, res) {
     }
 }
 
+// Update user by ID
 async function updateUser(req, res) {
     const userId = req.params.id;
     const updates = req.body;
@@ -81,6 +87,8 @@ async function updateUser(req, res) {
         return res.status(500).json({ error: 'Failed to update user', details: error.message });
     }
 }
+
+// Delete user by ID
 async function deleteUser(req, res) {
     const userId = req.params.id;
 

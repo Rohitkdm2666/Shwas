@@ -95,6 +95,22 @@ async function getDoctorById(req, res) {
   }
 }
 
+async function getDoctorsByHospitalId(req, res) {
+  try {
+    const { hospitalId } = req.params;
+    const doctors = await Doctor.find({ hospitalId }).populate("userId", "first_name last_name email").populate("hospitalId", "name location");
+
+    if (doctors.length === 0) {
+      return res.status(404).json({ message: "No doctors found for this hospital" });
+    }
+
+    res.status(200).json(doctors);
+  } catch (error) {
+    console.error("Error fetching doctors by hospital ID:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 // Update doctor by ID
 async function updateDoctor(req, res) {
   try {
@@ -137,5 +153,6 @@ module.exports = {
   getAllDoctors,
   getDoctorById,
   updateDoctor,
-  deleteDoctor
+  deleteDoctor,
+  getDoctorsByHospitalId,
 };
