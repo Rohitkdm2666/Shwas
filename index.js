@@ -12,12 +12,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // Import hospital routes
 const hospitalRoutes = require("./routes/hospitalRoutes");
-// Use hospital routes
 app.use("/api", hospitalRoutes);
 
 // Import user routes
 const userRoutes = require("./routes/UserRoutes");
 app.use("/api", userRoutes);
+
+// Import doctor routes
+const doctorRoutes = require("./routes/doctorRoutes");
+app.use("/api", doctorRoutes);
 
 // Handle 404 errors
 app.use((req, res) => {
