@@ -26,6 +26,14 @@ app.use("/api", doctorRoutes);
 const patientRoutes = require("./routes/patientRoutes");
 app.use("/api", patientRoutes);
 
+// Import staff routes
+const staffRoutes = require("./routes/staffRoutes");
+app.use("/api", staffRoutes);
+
+// Import appointment routes
+const appointmentRoutes = require("./routes/appointmentRoutes");
+app.use("/api", appointmentRoutes);
+
 // Handle 404 errors
 app.use((req, res) => {
     res.status(404).json({ error: "Not Found" });

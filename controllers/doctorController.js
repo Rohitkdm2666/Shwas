@@ -40,6 +40,10 @@ async function createDoctor(req, res) {
     if (!hospital) {
       return res.status(404).json({ message: "Hospital not found" });
     }
+    const existingDoctor = await Doctor.findOne({ userId, hospitalId });
+    if (existingDoctor) {
+      return res.status(400).json({ message: "Doctor already exists for this user in this hospital" });
+    }
 
     const doctor = new Doctor({
       userId,
