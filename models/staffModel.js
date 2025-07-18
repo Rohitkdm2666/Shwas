@@ -12,7 +12,7 @@ const staffSchema = new mongoose.Schema(
       ref: "Hospital",
       required: true,
     },
-    // staffId: { type: String, unique: true }, // e.g., ""
+    staffId: { type: String, unique: true }, // e.g., ""
 
 
     designation: {
@@ -56,6 +56,12 @@ const staffSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+staffSchema.pre("save", async function (next) {
+  if (this.staffId) return next();
+  const count = await mongoose.model("Staff").countDocuments({});
+  this.staffId = "STF" + (count + 1).toString().padStart(4, "0");
+  next();
+});
 
 const Staff = mongoose.model("Staff", staffSchema);
 module.exports = Staff;
